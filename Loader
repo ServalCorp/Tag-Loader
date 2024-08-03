@@ -1,0 +1,21 @@
+local textChatService = game:GetService("TextChatService")
+local marketplaceService = game:GetService("MarketplaceService")
+
+textChatService.OnIncomingMessage = function(message: TextChatMessage)
+
+	local properties = Instance.new("TextChatMessageProperties")
+
+	if message.TextSource then
+
+		local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+
+		if marketplaceService:UserOwnsGamePassAsync(player.UserId, 729637583) then --Gamepass tag
+			properties.PrefixText = "<font color='#ffff00'>[👑VIP]</font> "..message.PrefixText
+
+			end
+
+		end
+
+		return properties
+
+	end
